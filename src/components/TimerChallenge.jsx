@@ -4,13 +4,16 @@ import ResultModal from "./ResultModal";
 const TimerChallenge = ({ title, targetTime }) => {
   const timerId = useRef();
   const dialog = useRef();
+
   const [timeRemaining, setTimeRemaining] = useState(targetTime * 1000);
   const timerIsActive = timeRemaining > 0 && targetTime < 1000;
+
   if (timeRemaining <= 0) {
     clearInterval(timerId.current);
     setTimeRemaining(targetTime * 1000);
     dialog.current.open();
   }
+
   const handleClick = () => {
     timerId.current = setInterval(() => {
       setTimeRemaining((prev) => prev - 10);
